@@ -1,0 +1,10 @@
+{
+    "manifest_version": 3,
+    "name": "Long Animation Frame Extension",
+    "description": "Utilising the long animation frame to create a long animation frame and also provide you with your current INP score",
+    "version": "1.0",
+    "action": {
+      "default_popup": "loaf.html",
+      "default_icon": "hello_extensions.png"
+    }
+  }
