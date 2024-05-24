@@ -1,59 +1,50 @@
-const path = require("path");
-const HTMLPlugin = require("html-webpack-plugin");
-const CopyPlugin = require("copy-webpack-plugin")
+const path = require('path');
+const HTMLPlugin = require('html-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-    entry: {
-        index: "./src/index.js"
-    },
-    mode: "production",
-    module: {
-        rules: [
-            {
-              test: /\.js?$/,
-               use: [
-                 {
-                  loader: "babel-loader",
-                   options: {
-                    "presets": ["@babel/preset-env", "@babel/preset-react"]
-                    }
-                  }],
-               exclude: /node_modules/,
-            },
-            {
-              exclude: /node_modules/,
-              test: /\.css$/i,
-               use: [
-                  "style-loader",
-                  "css-loader"
-               ]
-            },
-        ],
-    },
-    plugins: [
-        new CopyPlugin({
-            patterns: [
-                { from: "manifest.json", to: "../manifest.json" },
-            ],
-        }),
-        ...getHtmlPlugins(["index"]),
+  entry: {
+    index: './src/index.js',
+    background: './src/background/background.js',
+    contentScript: './src/contentScript/contentScript.js',
+  },
+  mode: 'production',
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env', '@babel/preset-react'],
+          },
+        },
+      },
+      {
+        test: /\.css$/i,
+        exclude: /node_modules/,
+        use: ['style-loader', 'css-loader'],
+      },
     ],
-    resolve: {
-        extensions: [".tsx", ".ts", ".js"],
-    },
-    output: {
-        path: path.join(__dirname, "dist/js"),
-        filename: "[name].js",
-    },
+  },
+  plugins: [
+    new CopyPlugin({
+      patterns: [
+        { from: 'public/manifest.json', to: 'manifest.json' },
+      ],
+    }),
+    new HTMLPlugin({
+      template: './public/index.html',
+      filename: 'index.html',
+      chunks: ['index'],
+    }),
+  ],
+  resolve: {
+    extensions: ['.js', '.jsx'],
+  },
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'js/[name].js',
+  },
 };
-
-function getHtmlPlugins(chunks) {
-    return chunks.map(
-        (chunk) =>
-            new HTMLPlugin({
-                title: "React extension",
-                filename: `${chunk}.html`,
-                chunks: [chunk],
-            })
-    );
-}

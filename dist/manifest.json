@@ -4,7 +4,18 @@
   "name": "LOAF Extension",
   "description": "This is a Chrome extension built with React and TypeScript",
   "action": {
-      "default_popup": "js/index.html",
+      "default_popup": "dist/index.html",
       "default_title": "React Chrome Extension"
-  }
+  },
+  "background": {
+      "service_worker": "src/background/background.js"
+  },
+  "permissions": ["storage", "activeTab", "scripting", "tabs", "bookmarks", "nativeMessaging"],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["src/contentScript/contentScript.js"]
+    }
+  ]
 }
+  
