@@ -1,4 +1,4 @@
-
+/* 
 .container {
   display: flex;
   justify-content: center;
@@ -23,4 +23,67 @@ button{
   cursor: pointer;
 }
 
+ */
+ .App {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background-color: #f4f4f9;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  margin: auto;
+}
 
+h2 {
+  color: #b8860b;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.inputField {
+  display: flex;
+  flex-direction: column;
+}
+
+.inputField label {
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #333;
+}
+
+.inputField input[type='text'] {
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.inputField select {
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.generateButton {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.generateButton button {
+  background-color: #333;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.generateButton button:hover {
+  background-color: #555;
+}

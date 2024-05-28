@@ -1,10 +1,12 @@
 import React from 'react';
 
 function generateSnippet(userInput, userSelection) {
-  // Define your speculation rules
+
+  const urlSelection = userInput.split(',').map((url) => url.trim());
+  // Define your speculation rules here
   const speculationRules = {
     "prerender":[{
-        "where":{"href_matches":`${userInput}`},
+        "where":{"href_matches": urlSelection},
         "eagerness":`${userSelection}`
     }]
   };
