@@ -1,11 +1,9 @@
-import './App.css';
 import React from 'react';
 
 import {useEffect, useState} from 'react';
 
-function Appppp() {
+function generateCWV(userInput) {
   const {entries, setEntries} = useState('')
-  useEffect(() => {
     const handleEntries = (list) => {
         const newEntries = list.getEntries.map((entry => ({
           name: entry.name,
@@ -22,17 +20,4 @@ function Appppp() {
     return () => {
       observer.disconnect();
     };
-  }, []);
-
-  const handleClicks = () => {
-    console.log('Butoon Clicks')
-  }
-  return (
-    <div className='App' >
-      <h1>Long Task API</h1>
-      <button onClick={handleClicks}>Start</button>
-    </div>
-  );
-}
-
-export default Apppp;
+  };
