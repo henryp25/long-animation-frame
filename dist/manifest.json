@@ -1,22 +1,31 @@
 {
   "version": "1.0.0",
   "manifest_version": 3,
-  "name": "LOAF Extension",
-  "description": "This is a Chrome extension built with React and TypeScript",
+  "name": "Speculation Rules Tester",
+  "icons": {
+    "16": "icon.webp",
+    "48": "icon.webp",
+    "128": "icon.webp"
+  },
+  "description": "Enhance browsing with speculation rules for faster page loads, dynamic content optimization, and efficient background processing.",
   "action": {
-      "default_popup": "index.html",
-      "default_title": "React Chrome Extension"
+    "default_popup": "dist/index.html",
+    "default_title": "React Chrome Extension",
+    "default_icon": {
+      "16": "icon.webp",
+      "48": "icon.webp",
+      "128": "icon.webp"
+    }
+
   },
   "background": {
-      "service_worker": "src/background/background.js"
+    "service_worker": "dist/js/background.js"
   },
-  "permissions": ["storage", "activeTab", "scripting", "tabs", "bookmarks", "nativeMessaging"],
-  "host_permissions": ["<all_urls>"],
+  "permissions": ["activeTab", "scripting", "bookmarks", "background"],
   "content_scripts": [
     {
-      "matches": ["<all_urls>"],
-      "js": ["src/contentScript/contentScript.js"]
+      "matches": ["https://*/*", "http://*/*"],
+      "js": ["dist/js/contentScript.js"]
     }
   ]
 }
-  

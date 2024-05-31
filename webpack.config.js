@@ -31,7 +31,7 @@ module.exports = {
   plugins: [
     new CopyPlugin({
       patterns: [
-        { from: 'public/manifest.json', to: 'manifest.json' },
+        { from: 'manifest.json', to: 'manifest.json' },
       ],
     }),
     new HTMLPlugin({

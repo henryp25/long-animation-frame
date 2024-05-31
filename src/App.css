@@ -1,29 +1,4 @@
-/* 
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgb(146, 17, 17)rgb(135, 104, 104)
-}
 
-h2 {
-  color: darkgoldenrod;
-  font-size: 20px;
-}
-.generateButton{
-  padding: 10px;
-  margin: 10px;
-}
-button{
-  background-color: gray;
-  color: black;
-  padding: 10px;
-  margin: 10px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
- */
  .App {
   font-family: Arial, sans-serif;
   padding: 20px;
@@ -58,6 +33,10 @@ h2 {
   border-radius: 5px;
   width: 100%;
   box-sizing: border-box;
+}
+
+.inputField input:hover {
+  display: hidden;
 }
 
 .inputField select {

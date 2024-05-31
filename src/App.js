@@ -1,5 +1,5 @@
 import React from 'react';
-import Popup from './popup';
+import Popup from './speculationRules/popup';
 import './App.css';
 
 function App() {

@@ -1,1 +1,1 @@
-chrome.runtime.onInstalled.addListener((()=>{console.log("onInstalled....")}));
+chrome.tabs.onUpdated.addListener((function(e,s,a){"complete"===s.status&&chrome.tabs.sendMessage(e,{message:"url-loaded",url:a.url})}));

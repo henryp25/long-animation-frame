@@ -1,9 +1,9 @@
 import React, {useState} from 'react'
-import generateSnippet from './speculationRules/generateSnippet'
+import generateSnippet from './generateSnippet'
 
 function Popup() {
 
-    const [entries, setEntries] = useState('Add Folder Name Here...')
+    const [entries, setEntries] = useState('/example, /example/test')
     const [eagerness, setEagerness] = useState('immediate')
 
     const handleSubmit = async () => {
@@ -16,6 +16,8 @@ function Popup() {
           function: generateSnippet,
           args: [entries,eagerness], // Pass the entries as an argument
         });
+
+
     };
 
 

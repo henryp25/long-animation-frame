@@ -1,6 +1,10 @@
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-    // 2. A page requested user data, respond with a copy of `user`
-    if (message === 'INPUT_TEXT') {
-      console.log('INPUT_TEXT....');
+import CoreWebVitals from '../speculationRules/coreWebVitals.js';
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+
+    if (request.message === 'url-loaded') {
+        chrome.scripting.executeScript({
+            target: {tabId: sender.tab.id},
+            function: CoreWebVitals
+        });
     }
-  });
+});

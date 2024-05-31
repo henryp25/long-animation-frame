@@ -1,23 +1,24 @@
 import React from 'react';
-
 import {useEffect, useState} from 'react';
 
-function generateCWV(userInput) {
-  const {entries, setEntries} = useState('')
-    const handleEntries = (list) => {
-        const newEntries = list.getEntries.map((entry => ({
-          name: entry.name,
-          blockedDuration: entry.duration,
-          startTime: entry.startTime,
-        })));
-        setEntries(prevEntries => [...prevEntries, ...newEntries]);
-        console.log('Test Run')
-    };
-   
-    const observer = new PerformanceObserver(handleEntries);
-    observer.observe({ type: "long-animation-frame", buffered: true });
 
-    return () => {
-      observer.disconnect();
-    };
-  };
+
+function CoreWebVitals() {
+    const lcpObserver = new PerformanceObserver(list => {
+      const entries = list.getEntries();
+      const lastEntry = entries[entries.length - 1];
+      entries.forEach(entry => {
+        console.log('LCP:', entry.renderTime);
+      })
+    });
+    lcpObserver.observe({type: 'largest-contentful-paint', buffered: true})
+
+  }
+
+  CoreWebVitals();
+
+export default CoreWebVitals;
+
+
+
+
