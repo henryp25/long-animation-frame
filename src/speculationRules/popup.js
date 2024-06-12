@@ -5,6 +5,7 @@ function Popup() {
 
     const [entries, setEntries] = useState('/example, /example/test')
     const [eagerness, setEagerness] = useState('immediate')
+    const [coreWebVitalsData, setCoreWebVitalsData] = useState([])
 
     const handleSubmit = async () => {
         event.preventDefault()
@@ -19,8 +20,20 @@ function Popup() {
 
 
     };
-
-
+    document.addEventListener('DOMContentLoaded', () => {
+      chrome.runtime.sendMessage({ message: 'get-core-web-vitals' }, (response) => {
+        const dataContainer = document.getElementById('data-container');
+        if (response && response.length > 0) {
+          response.forEach((time, index) => {
+            const listItem = document.createElement('li');
+            listItem.textContent = `LCP: ${time}`;
+            dataContainer.appendChild(listItem);
+          });
+        } else {
+          dataContainer.textContent = 'No data available';
+        }
+      });
+    });
   return (
     <div className='App'>
     <div>
@@ -43,6 +56,12 @@ function Popup() {
         </select>
         <div className='generateButton'>
           <button type='button' onClick={handleSubmit}>Submit</button>
+        </div>
+        <div>
+          <h3>Core Web Vitals Data</h3>
+          <ul id='data-container'>
+
+          </ul>
         </div>
 
       </form>

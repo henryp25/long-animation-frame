@@ -1,10 +1,21 @@
-import CoreWebVitals from '../speculationRules/coreWebVitals.js';
-chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-
-    if (request.message === 'url-loaded') {
-        chrome.scripting.executeScript({
-            target: {tabId: sender.tab.id},
-            function: CoreWebVitals
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+    if (message.message === 'tab-loaded') {
+      (async () => {
+        const data = [];
+        const lcpObserver = new PerformanceObserver(list => {
+          const entries = list.getEntries();
+          entries.forEach(entry => {
+            data.push(entry.renderTime);
+            chrome.runtime.sendMessage({ type: 'core-web-vitals-data', data });
+          });
         });
+        
+        lcpObserver.observe({ type: 'largest-contentful-paint', buffered: true });
+        
+        setTimeout(() => {
+          lcpObserver.disconnect();
+        }, 5000); // Adjust the timeout as needed to collect the data
+      })();
     }
-});
+  });
+  

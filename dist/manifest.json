@@ -21,7 +21,7 @@
   "background": {
     "service_worker": "dist/js/background.js"
   },
-  "permissions": ["activeTab", "scripting", "bookmarks", "background"],
+  "permissions": ["activeTab", "scripting", "bookmarks", "background", "tabs"],
   "content_scripts": [
     {
       "matches": ["https://*/*", "http://*/*"],
