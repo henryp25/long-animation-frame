@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import generateSnippet from './generateSnippet'
 
 function Popup() {
@@ -7,7 +7,7 @@ function Popup() {
     const [eagerness, setEagerness] = useState('immediate')
     const [coreWebVitalsData, setCoreWebVitalsData] = useState([])
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (event) => {
         event.preventDefault()
         console.log('Entries:', entries)
         let tabs = await chrome.tabs.query( {active:true});
@@ -20,20 +20,24 @@ function Popup() {
 
 
     };
-    document.addEventListener('DOMContentLoaded', () => {
-      chrome.runtime.sendMessage({ message: 'get-core-web-vitals' }, (response) => {
-        const dataContainer = document.getElementById('data-container');
-        if (response && response.length > 0) {
-          response.forEach((time, index) => {
-            const listItem = document.createElement('li');
-            listItem.textContent = `LCP: ${time}`;
-            dataContainer.appendChild(listItem);
+
+
+    
+    useEffect(() => {
+      document.addEventListener('DOMContentLoaded', () => {
+
+          chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+            if (message.message === 'get-core-web-vitals') {
+              console.log('Core Web Vitals data:', response)
+              setCoreWebVitalsData(response);
+            } else {
+              setCoreWebVitalsData([]);
+            }
           });
-        } else {
-          dataContainer.textContent = 'No data available';
-        }
-      });
-    });
+      }
+    );
+  }, []);
+
   return (
     <div className='App'>
     <div>
@@ -60,7 +64,8 @@ function Popup() {
         <div>
           <h3>Core Web Vitals Data</h3>
           <ul id='data-container'>
-
+            <li>LCP Data: {coreWebVitalsData}
+            </li>
           </ul>
         </div>
 

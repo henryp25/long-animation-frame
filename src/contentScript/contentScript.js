@@ -5,7 +5,8 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         const lcpObserver = new PerformanceObserver(list => {
           const entries = list.getEntries();
           entries.forEach(entry => {
-            data.push(entry.renderTime);
+            data.push(Math.round(entry.renderTime));
+            console.log('LCP entry:', data[0])
             chrome.runtime.sendMessage({ type: 'core-web-vitals-data', data });
           });
         });

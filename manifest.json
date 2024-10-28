@@ -3,18 +3,18 @@
   "manifest_version": 3,
   "name": "Speculation Rules Tester",
   "icons": {
-    "16": "icon.webp",
-    "48": "icon.webp",
-    "128": "icon.webp"
+    "16": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
   },
   "description": "Enhance browsing with speculation rules for faster page loads, dynamic content optimization, and efficient background processing.",
   "action": {
     "default_popup": "dist/index.html",
     "default_title": "React Chrome Extension",
     "default_icon": {
-      "16": "icon.webp",
-      "48": "icon.webp",
-      "128": "icon.webp"
+      "16": "icon.png",
+      "48": "icon.png",
+      "128": "icon.png"
     }
 
   },
